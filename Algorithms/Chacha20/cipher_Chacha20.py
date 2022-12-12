@@ -2,10 +2,7 @@ from Crypto.Cipher import ChaCha20
 from Crypto.Random import get_random_bytes
 import time
 import numpy as np
-
-
-
-
+from Algorithms.structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values
 
 for i in range(iter):
   cha_plaintext = b'Texto prueba para el primer proyecto de criptografia'

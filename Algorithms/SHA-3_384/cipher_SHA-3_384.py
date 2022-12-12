@@ -1,5 +1,9 @@
+import time
+import numpy as np
+from Crypto.Hash import SHA3_384
+
 for i in range(iter):
-  cadena = b"MiCadenaHashSha3"
+  cadenaHash = b"MiCadenaHashSha3"
   
   # Creacion de objetos hash sha-3 y su codificacion
   hash_sha3_384 = SHA3_384.new( cadenaHash )

@@ -1,3 +1,12 @@
+import time
+import numpy as np
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.exceptions import InvalidSignature
+
+
+
+
 for i in range(iter):
   llaveFirmaPrivada = ec.generate_private_key(ec.SECT571K1())
   llavePublica = llaveFirmaPrivada.public_key()

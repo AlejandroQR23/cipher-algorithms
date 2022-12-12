@@ -1,7 +1,7 @@
 import time
 import numpy as np
 from Crypto.Hash import SHA384
-
+from Algorithms.structures import hash_prom_list,hash_values
 
 for i in range(iter):
   cadenaHash = b"MiCadenaHashSha2"

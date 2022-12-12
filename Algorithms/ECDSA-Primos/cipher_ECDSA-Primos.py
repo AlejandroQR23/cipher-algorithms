@@ -1,3 +1,12 @@
+import time
+import numpy as np
+from ecdsa import SigningKey, NIST521p, BadSignatureError
+
+
+
+
+
+
 for i in range(iter):
   #Usamos la curva de 521 bits
   llaveFirmaPrivada = SigningKey.generate(curve=NIST521p)

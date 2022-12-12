@@ -3,9 +3,7 @@ import numpy as np
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.exceptions import InvalidSignature
-
-
-
+from Algorithms.structures import sign_prom_list,verify_prom_list,sign_values,verify_values
 
 for i in range(iter):
   llaveFirmaPrivada = ec.generate_private_key(ec.SECT571K1())

@@ -1,3 +1,7 @@
+import time
+import numpy as np
+from Crypto.Hash import SHA3_512
+
 for i in range(iter):
   cadenaHash = b"MiCadenaHashSha3"
     

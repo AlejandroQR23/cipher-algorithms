@@ -1,9 +1,9 @@
 import time
 import numpy as np
 from ecdsa import SigningKey, NIST521p, BadSignatureError
-from Algorithms.structures import sign_prom_list,verify_prom_list,sign_values,verify_values
+from structures import sign_prom_list,verify_prom_list,sign_values,verify_values
 
-for i in range(iter):
+for i in range(150):
   #Usamos la curva de 521 bits
   llaveFirmaPrivada = SigningKey.generate(curve=NIST521p)
   llavePublica = llaveFirmaPrivada.verifying_key

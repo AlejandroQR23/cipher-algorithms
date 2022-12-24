@@ -2,9 +2,9 @@ import time
 import numpy as np
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
-from Algorithms.structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values
+from structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values
 
-for i in range(iter):
+for i in range(150):
   message = b'You can attack now!'
   keys = RSA.generate(2048)
   public_key = keys.publickey()

@@ -3,9 +3,9 @@ import numpy as np
 from Crypto.PublicKey import RSA
 from Crypto.Signature import pss
 from Crypto.Hash import SHA256
-from Algorithms.structures import sign_prom_list,verify_prom_list,sign_values,verify_values
+from structures import sign_prom_list,verify_prom_list,sign_values,verify_values
 
-for i in range(iter):
+for i in range(150):
   message = b'To be signed'
   keys = RSA.generate(2048)
   private_key = keys.export_key()

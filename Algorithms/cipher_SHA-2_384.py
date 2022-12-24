@@ -1,9 +1,9 @@
 import time
 import numpy as np
 from Crypto.Hash import SHA384
-from Algorithms.structures import hash_prom_list,hash_values
+from structures import hash_prom_list,hash_values
 
-for i in range(iter):
+for i in range(150):
   cadenaHash = b"MiCadenaHashSha2"
     
   # Creacion de objetos hash sha-2 y su codificacion
@@ -13,9 +13,9 @@ for i in range(iter):
   T2 = time.time()
 
   hash_prom_list.append(T2 - T1)
-  
+'''
 # Calculo y eliminacion de valores atipicos para el hash.
-q75,q25 = np.percentile(hash_prom_list,[75,25])
+q75,q25 = np.percentile(hash_prom_list,[75,25])                           #Aqui esta el error
 IQR = q75 - q25
 
 # Elimina los valores por encima del limite superior
@@ -25,3 +25,4 @@ hash_prom_list = [i for i in hash_prom_list if i > (q25 - 1.5*IQR)]
 
 hash_values["SHA2-384"] = np.mean(hash_prom_list)
 hash_prom_list.clear()
+'''

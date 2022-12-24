@@ -3,9 +3,9 @@ import time
 import numpy as np
 from Crypto.Util.Padding import pad
 from Crypto.Cipher import AES
-from Algorithms.structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values
+from structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values
 
-for i in range(iter):
+for i in range(150):
   data = b'secret'
   key = get_random_bytes(16)
   cipher = AES.new(key, AES.MODE_ECB)
@@ -32,8 +32,8 @@ IQR = q75 - q25
 encryp_prom_list = [i for i in encryp_prom_list if i < (q75 + 1.5*IQR)]
 # Elimina los valores por debajo del limite inferior
 encryp_prom_list = [i for i in encryp_prom_list if i > (q25 - 1.5*IQR)]
-
-encryp_values["AES-ECB"] = np.mean(encryp_prom_list)
+'''
+encryp_values["AES-ECB"] = np.mean(encryp_prom_list)                       #Aqui esta el error
 encryp_prom_list.clear()
 
 # Calculo y eliminacion de valores atipicos para la desencriptacion.
@@ -47,3 +47,4 @@ decryp_prom_list = [i for i in decryp_prom_list if i > (q25 - 1.5*IQR)]
 
 decryp_values["AES-ECB"] = np.mean(decryp_prom_list)
 decryp_prom_list.clear()
+'''

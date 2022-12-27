@@ -4,6 +4,7 @@ decryp_prom_list = []
 hash_prom_list = []
 sign_prom_list = []
 verify_prom_list = []
+average = 0.0
 
 # Diccionarios que almacenaran promedios
 encryp_values = { "Chacha20": 0, "AES-ECB": 0, "AES-GCM": 0, "RSA-OAEP": 0 }

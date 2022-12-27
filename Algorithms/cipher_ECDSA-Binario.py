@@ -3,7 +3,7 @@ import numpy as np
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.exceptions import InvalidSignature
-from structures import sign_prom_list,verify_prom_list,sign_values,verify_values
+from structures import sign_prom_list,verify_prom_list,sign_values,verify_values,average
 
 for i in range(150):
   llaveFirmaPrivada = ec.generate_private_key(ec.SECT571K1())
@@ -13,7 +13,7 @@ for i in range(150):
   firma = llaveFirmaPrivada.sign(b"message",ec.ECDSA(hashes.SHA256()))
   T2 = time.time()
 
-  sign_prom_list.append( T2 - T1 )
+  average = average+(T2-T1)
 
   try:
     #Al igual que la de verificacion
@@ -24,27 +24,5 @@ for i in range(150):
   except InvalidSignature:
     print("BAD SIGNATURE")
 
-# Calculo y eliminacion de valores atipicos para la verificacion.
-q75,q25 = np.percentile(sign_prom_list,[75,25])
-IQR = q75 - q25
-
-# Elimina los valores por encima del limite superior
-sign_prom_list = [i for i in sign_prom_list if i < (q75 + 1.5*IQR)]
-# Elimina los valores por debajo del limite inferior
-sign_prom_list = [i for i in sign_prom_list if i > (q25 - 1.5*IQR)]
-
-sign_values["ECDSA BF"] = np.mean(sign_prom_list)
-sign_prom_list.clear()
-
-
-# Calculo y eliminacion de valores atipicos para la verificacion.
-q75,q25 = np.percentile(verify_prom_list,[75,25])
-IQR = q75 - q25
-
-# Elimina los valores por encima del limite superior
-verify_prom_list = [i for i in verify_prom_list if i < (q75 + 1.5*IQR)]
-# Elimina los valores por debajo del limite inferior
-verify_prom_list = [i for i in verify_prom_list if i > (q25 - 1.5*IQR)]
-
-verify_values["ECDSA BF"] = np.mean(verify_prom_list)
-verify_prom_list.clear()
+print(average)
+sign_prom_list.append( T2 - T1 )

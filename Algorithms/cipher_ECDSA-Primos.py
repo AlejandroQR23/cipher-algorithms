@@ -1,7 +1,7 @@
 import time
 import numpy as np
 from ecdsa import SigningKey, NIST521p, BadSignatureError
-from structures import sign_prom_list,verify_prom_list,sign_values,verify_values,signatureAverage,VerifyAverage,iter
+from structures import sign_prom_list,verify_prom_list,signatureAverage,VerifyAverage,iter
 
 for i in range(iter):
   #Usamos la curva de 521 bits

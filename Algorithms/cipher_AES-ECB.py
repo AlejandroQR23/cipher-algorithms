@@ -3,7 +3,7 @@ import time
 import numpy as np
 from Crypto.Util.Padding import pad
 from Crypto.Cipher import AES
-from structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values,averageDecript,averageEncript,iter
+from structures import encryp_prom_list,decryp_prom_list,averageDecript,averageEncript,iter
 
 for i in range(iter):
   data = b'secret'

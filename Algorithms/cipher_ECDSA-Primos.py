@@ -1,9 +1,9 @@
 import time
 import numpy as np
 from ecdsa import SigningKey, NIST521p, BadSignatureError
-from structures import sign_prom_list,verify_prom_list,sign_values,verify_values,average
+from structures import sign_prom_list,verify_prom_list,sign_values,verify_values,signatureAverage,VerifyAverage,iter
 
-for i in range(150):
+for i in range(iter):
   #Usamos la curva de 521 bits
   llaveFirmaPrivada = SigningKey.generate(curve=NIST521p)
   llavePublica = llaveFirmaPrivada.verifying_key
@@ -13,16 +13,21 @@ for i in range(150):
   firma = llaveFirmaPrivada.sign(b"message")
   T2 = time.time()
 
-  average = average+(T2-T1)
+  signatureAverage = signatureAverage+(T2-T1)
 
   try:
     #Al igual que la de verificacion
     T1 = time.time()
     llavePublica.verify(firma, b"message")
     T2 = time.time()
-    verify_prom_list.append( T2 - T1 )
+
+    VerifyAverage = VerifyAverage+(T2-T1)
+
   except BadSignatureError:
     print("BAD SIGNATURE")
 
-print(average)
-sign_prom_list.append(average)
+print(signatureAverage/iter)
+sign_prom_list.append(signatureAverage/iter)
+
+print(VerifyAverage/iter)
+verify_prom_list.append(VerifyAverage/iter)

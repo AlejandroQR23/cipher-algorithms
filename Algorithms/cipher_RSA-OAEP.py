@@ -2,9 +2,9 @@ import time
 import numpy as np
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
-from structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values,average
+from structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values,averageEncript,averageDecript,iter
 
-for i in range(150):
+for i in range(iter):
   message = b'You can attack now!'
   keys = RSA.generate(2048)
   public_key = keys.publickey()
@@ -14,16 +14,21 @@ for i in range(150):
   ciphertext = cipher.encrypt(message)
   T2 = time.time()
 
-  average = average+(T2-T1)
+  averageEncript = averageEncript+(T2-T1)
 
   try:
     cipher = PKCS1_OAEP.new(keys)
     T1 = time.time()
     message = cipher.decrypt(ciphertext)
     T2 = time.time()
-    decryp_prom_list.append(T2 - T1)
+
+    averageDecript = averageDecript+(T2-T1)
+    
   except(ValueError, TypeError):
     print("Incorrect decryption")
 
-print(average)
-encryp_prom_list.append(average)
+print(averageEncript/iter)
+encryp_prom_list.append(averageEncript/iter)
+
+print(averageDecript/iter)
+decryp_prom_list.append(averageDecript/iter)

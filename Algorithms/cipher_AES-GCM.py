@@ -2,7 +2,7 @@ from Crypto.Random import get_random_bytes
 import time
 import numpy as np
 from Crypto.Cipher import AES
-from structures import encryp_prom_list,decryp_prom_list,encryp_values,decryp_values,averageEncript,averageDecript,iter
+from structures import encryp_prom_list,decryp_prom_list,averageEncript,averageDecript,iter
 
 for i in range(iter):
   header = b"header"

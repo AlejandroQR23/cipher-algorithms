@@ -21,19 +21,15 @@ def get_average_encrypt_time(iterations, data):
         cipher_message = cipher.encrypt(padded_block)
         T2 = time.time()
 
-        encrypt_time = encrypt_time + (T2-T1)
+        encrypt_time += (T2-T1)
 
-        try:
-            T1 = time.time()
-            cipher.decrypt(cipher_message)
-            T2 = time.time()
+        T1 = time.time()
+        cipher.decrypt(cipher_message)
+        T2 = time.time()
 
-            decrypt_time = decrypt_time + (T2-T1)
+        decrypt_time += (T2-T1)
 
-        except (ValueError, KeyError):
-            print("Incorrect decryption")
-
-    average_encrypt_time = (encrypt_time / iterations) * 1000000
-    average_decrypt_time = (decrypt_time / iterations) * 1000000
+    average_encrypt_time = (encrypt_time * 1000000) / iterations
+    average_decrypt_time = (decrypt_time * 1000000) / iterations
 
     return average_encrypt_time, average_decrypt_time

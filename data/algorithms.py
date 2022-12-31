@@ -1,3 +1,6 @@
+from algorithms import AES_ECB
+
+
 algorithms = [
     {
         'name': 'chacha20',
@@ -7,7 +10,8 @@ algorithms = [
     {
         'name': 'aes-ebc',
         'key_size': 256,
-        'description': ''
+        'description': '',
+        'get_avg': AES_ECB.get_average_encrypt_time,
     },
     {
         'name': 'aes-cbc',

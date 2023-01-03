@@ -1,4 +1,4 @@
-from algorithms import AES_ECB, Chacha20
+from algorithms import AES_ECB, Chacha20, SHA2_384
 
 
 algorithms = [
@@ -22,7 +22,8 @@ algorithms = [
     {
         'name': 'sha-2',
         'key_size': 384,
-        'description': ''
+        'description': '',
+        'get_avg': SHA2_384.get_average_encrypt_time,
     },
     {
         'name': 'sha-2-512',

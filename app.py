@@ -34,10 +34,13 @@ def get_average_time(algorithm):
         try:
             average_encrypt, average_decrypt = selected_algorithm['get_avg'](
                 iterations, data)
-            return make_response({
+
+            response = {
                 'avg_encrypt_time': average_encrypt,
-                'avg_decrypt_time': average_decrypt
-            }, 200)
+            }
+            if average_decrypt:
+                response['avg_decrypt_time'] = average_decrypt
+            return make_response(response, 200)
         except KeyError:
             return make_response('Average not implemented yet', 400)
     return make_response('Invalid algorithm', 400)

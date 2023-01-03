@@ -43,6 +43,8 @@ def get_average_time(algorithm):
             return make_response(response, 200)
         except KeyError:
             return make_response('Average not implemented yet', 400)
+        except ValueError as e:
+            return make_response(str(e), 400)
     return make_response('Invalid algorithm', 400)
 
 

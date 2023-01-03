@@ -1,4 +1,4 @@
-from algorithms import AES_ECB, Chacha20, SHA2_384, SHA2_512, SHA3_384, SHA3_512
+from algorithms import AES_ECB, Chacha20, SHA2_384, SHA2_512, SHA3_384, SHA3_512, RSA_OAEP
 
 
 algorithms = [
@@ -46,7 +46,8 @@ algorithms = [
     {
         'name': 'rsa-oaep',
         'key_size': 1024,
-        'description': ''
+        'description': '',
+        'get_avg': RSA_OAEP.get_average_encrypt_time,
     },
     {
         'name': 'rsa-pss',

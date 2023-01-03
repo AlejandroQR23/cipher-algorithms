@@ -1,6 +1,7 @@
 from flask import Flask, make_response, request
 
 from data import algorithms, testing_vectors
+from utils.helpers import get_algorithm
 
 app = Flask(__name__)
 
@@ -28,14 +29,17 @@ def get_average_time(algorithm):
     iterations = int(request.args.get('iterations', 150))
     data = request.args.get('data', 'secret')
 
-    for current_algorithm in algorithms.algorithms:
-        if current_algorithm['name'] == algorithm:
-            average_encrypt, average_decrypt = current_algorithm['get_avg'](
+    selected_algorithm = get_algorithm(algorithm)
+    if selected_algorithm:
+        try:
+            average_encrypt, average_decrypt = selected_algorithm['get_avg'](
                 iterations, data)
             return make_response({
-                'avg_encrypt': average_encrypt,
-                'avg_decrypt': average_decrypt
+                'avg_encrypt_time': average_encrypt,
+                'avg_decrypt_time': average_decrypt
             }, 200)
+        except KeyError:
+            return make_response('Average not implemented yet', 400)
     return make_response('Invalid algorithm', 400)
 
 

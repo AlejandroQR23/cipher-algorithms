@@ -1,4 +1,4 @@
-from algorithms import AES_ECB, AES_CBC, Chacha20, SHA2_384, SHA2_512, SHA3_384, SHA3_512, RSA_OAEP
+from algorithms import AES_ECB, AES_CBC, Chacha20, SHA2_384, SHA2_512, SHA3_384, SHA3_512, RSA_OAEP, RSA_PSS
 
 
 algorithms = [
@@ -53,7 +53,8 @@ algorithms = [
     {
         'name': 'rsa-pss',
         'key_size': 1024,
-        'description': ''
+        'description': '',
+        'get_avg': RSA_PSS.get_average_encrypt_time,
     },
     {
         'name': 'ecdsa-prime',

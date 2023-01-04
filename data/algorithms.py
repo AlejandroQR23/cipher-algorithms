@@ -1,4 +1,4 @@
-from algorithms import AES_ECB, AES_CBC, Chacha20, SHA2_384, SHA2_512, SHA3_384, SHA3_512, RSA_OAEP, RSA_PSS, ECDSA_primes
+from algorithms import AES_ECB, AES_CBC, Chacha20, SHA2_384, SHA2_512, SHA3_384, SHA3_512, RSA_OAEP, RSA_PSS, ECDSA_binary, ECDSA_primes
 
 
 algorithms = [
@@ -65,7 +65,8 @@ algorithms = [
     {
         'name': 'ecdsa-binary',
         'key_size': 571,
-        'description': ''
+        'description': '',
+        'get_avg': ECDSA_binary.get_average_encrypt_time,
     }
 ]
 

@@ -1,7 +1,7 @@
 from flask import Flask, make_response, request
 
 from data import algorithms, testing_vectors
-from utils.helpers import get_algorithm
+from utils.helpers import get_algorithm, get_best_time
 
 app = Flask(__name__)
 
@@ -53,6 +53,34 @@ def get_average_time(algorithm):
         except ValueError as e:
             return make_response(str(e), 400)
     return make_response('Invalid algorithm', 400)
+
+
+@app.route('/algorithms/compare')
+def compare_algorithms():
+    iterations = int(request.args.get('iterations', 150))
+    data = request.args.get('data', 'secret')
+    algo1 = request.args.get('algo1', None)
+    algo2 = request.args.get('algo2', None)
+
+    if algo1 and algo2:
+        selected_algorithm1 = get_algorithm(algo1)
+        selected_algorithm2 = get_algorithm(algo2)
+        if selected_algorithm1 and selected_algorithm2:
+            if selected_algorithm1['type'] != selected_algorithm2['type']:
+                return make_response('Algorithms must be of the same type', 400)
+            try:
+                best_encryption, best_decryption = get_best_time(
+                    selected_algorithm1, selected_algorithm2, iterations, data)
+                response = {
+                    'best_encryption': best_encryption,
+                }
+                if best_decryption:
+                    response['best_decryption'] = best_decryption
+                return make_response(response, 200)
+            except ValueError as e:
+                return make_response(str(e), 400)
+        return make_response('Invalid algorithm', 400)
+    return make_response('Missing algorithm: You must provide two algorithms to compare', 400)
 
 
 @app.route('/testing_vectors/<string:type>')

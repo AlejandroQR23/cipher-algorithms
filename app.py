@@ -17,7 +17,8 @@ def get_algorithms():
         {
             'name': algorithm['name'],
             'key_size': algorithm['key_size'],
-            'description': algorithm['description']
+            'description': algorithm['description'],
+            'type': algorithm['type']
         }
         for algorithm in algorithms.algorithms
     ]

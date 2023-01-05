@@ -13,6 +13,7 @@ def hello_world():
 
 @app.route('/algorithms')
 def get_algorithms():
+    type_filter = request.args.get('type', None)
     cipher_algorithms = [
         {
             'name': algorithm['name'],
@@ -22,6 +23,11 @@ def get_algorithms():
         }
         for algorithm in algorithms.algorithms
     ]
+    if type_filter:
+        cipher_algorithms = [
+            algorithm for algorithm in cipher_algorithms
+            if algorithm['type'] == type_filter
+        ]
     return make_response(cipher_algorithms, 200)
 
 

@@ -1,9 +1,12 @@
+from flask_cors import CORS
 from flask import Flask, make_response, request
 
 from data import algorithms, testing_vectors
 from utils.helpers import get_algorithm, get_best_time
 
 app = Flask(__name__)
+
+cors = CORS(app)
 
 
 @app.route('/')
@@ -45,7 +48,7 @@ def get_average_time(algorithm):
             response = {
                 'avg_encrypt_time': average_encrypt,
             }
-            if average_decrypt:
+            if average_decrypt != None:
                 response['avg_decrypt_time'] = average_decrypt
             return make_response(response, 200)
         except KeyError:
@@ -74,7 +77,7 @@ def compare_algorithms():
                 response = {
                     'best_encryption': best_encryption,
                 }
-                if best_decryption:
+                if best_decryption != None:
                     response['best_decryption'] = best_decryption
                 return make_response(response, 200)
             except ValueError as e:
